@@ -15,7 +15,7 @@ f"SERVER={args.server};"
 f"DATABASE={args.database};"
 f"UID={args.user};"
 f"PWD={args.password};"
-"TrustServerCertificate=True;"
+"TrustServerCertificate=Yes;"
 )
 
 try:
