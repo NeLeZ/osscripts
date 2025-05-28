@@ -10,7 +10,7 @@ parser.add_argument('--password')
 args = parser.parse_args()
 
 connenction_string = (
-"DRIVER={FreeTDS};"
+"DRIVER={ODBC Driver 18 for SQL Server};"
 f"SERVER={args.server};"
 f"DATABASE={args.database};"
 f"UID={args.user};"
