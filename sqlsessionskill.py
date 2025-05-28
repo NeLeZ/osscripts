@@ -18,6 +18,8 @@ f"PWD={args.password};"
 "TrustServerCertificate=Yes;"
 )
 
+print(connenction_string)
+
 try:
     with pyodbc.connect(connenction_string) as connection:
         connection.autocommit = True
