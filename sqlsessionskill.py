@@ -26,6 +26,6 @@ try:
             rows = cursor.fetchall()
             for row in rows:
                 print(f"kill {row.id}")
-                //cursor.execute(f"kill {row.id}")
+                # cursor.execute(f"kill {row.id}")
 except pyodbc.Error as ex:
       print("An error occurred in SQL Server:", ex)
