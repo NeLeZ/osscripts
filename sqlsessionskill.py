@@ -10,7 +10,7 @@ parser.add_argument('--password')
 args = parser.parse_args()
 
 connenction_string = (
-"DRIVER={ODBC Driver 11 for SQL Server};"
+"DRIVER={FreeTDS};"
 f"SERVER={args.server};"
 f"DATABASE={args.database};"
 f"UID={args.user};"
@@ -26,6 +26,6 @@ try:
             rows = cursor.fetchall()
             for row in rows:
                 print(f"kill {row.id}")
-                cursor.execute(f"kill {row.id}")
+                //cursor.execute(f"kill {row.id}")
 except pyodbc.Error as ex:
       print("An error occurred in SQL Server:", ex)
