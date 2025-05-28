@@ -9,25 +9,23 @@ parser.add_argument('--password')
 
 args = parser.parse_args()
 
-pyodbc.driver()
+connenction_string = (
+"DRIVER={ODBC Driver 17 for SQL Server};"
+f"SERVER={args.server};"
+f"DATABASE={args.database};"
+f"UID={args.user};"
+f"PWD={args.password};"
+)
 
-# connenction_string = (
-# "DRIVER={ODBC Driver 17 for SQL Server};"
-# f"SERVER={args.server};"
-# f"DATABASE={args.database};"
-# f"UID={args.user};"
-# f"PWD={args.password};"
-# )
-
-# try:
-#     with pyodbc.connect(connenction_string) as connection:
-#         connection.autocommit = True
-#         with connection.cursor() as cursor:
-#             query = f"select CONVERT(varchar, spid) as id from sys.sysprocesses where dbid=db_id('{args.database}') and program_name = '1CV83 Server'"
-#             cursor.execute(query)
-#             rows = cursor.fetchall()
-#             for row in rows:
-#                 print(f"kill {row.id}")
-#                 cursor.execute(f"kill {row.id}")
-# except pyodbc.Error as ex:
-#       print("An error occurred in SQL Server:", ex)
+try:
+    with pyodbc.connect(connenction_string) as connection:
+        connection.autocommit = True
+        with connection.cursor() as cursor:
+            query = f"select CONVERT(varchar, spid) as id from sys.sysprocesses where dbid=db_id('{args.database}') and program_name = '1CV83 Server'"
+            cursor.execute(query)
+            rows = cursor.fetchall()
+            for row in rows:
+                print(f"kill {row.id}")
+                cursor.execute(f"kill {row.id}")
+except pyodbc.Error as ex:
+      print("An error occurred in SQL Server:", ex)
