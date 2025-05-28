@@ -18,8 +18,6 @@ f"PWD={args.password};"
 "TrustServerCertificate=Yes;"
 )
 
-print(connenction_string)
-
 try:
     with pyodbc.connect(connenction_string) as connection:
         connection.autocommit = True
@@ -29,6 +27,6 @@ try:
             rows = cursor.fetchall()
             for row in rows:
                 print(f"kill {row.id}")
-                #cursor.execute(f"kill {row.id}")
+                cursor.execute(f"kill {row.id}")
 except pyodbc.Error as ex:
       print("An error occurred in SQL Server:", ex)
